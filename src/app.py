@@ -1,10 +1,12 @@
+from .Heroi import Heroi
 from .MundoWumpus import MundoWumpus
 
 def main():
-    jogo = MundoWumpus()
-    print("Posição inicial:", jogo.pos_heroi)
-    print("Vizinhos da posição inicial:", jogo.vizinhos(jogo.pos_heroi))
-    print("Percepção inicial:", jogo.perceber())
+    mundo = MundoWumpus()
+    heroi = Heroi()
+    print("Posição do herói:", heroi.posicao)
+    print("Tem ouro?", heroi.tem_ouro)
+    print("Percepção inicial:", mundo.perceber(heroi))
 
 if __name__ == "__main__":
     main()

@@ -9,18 +9,11 @@ class MundoWumpus:
         self.pos_ouro = (3,2)
         self.pos_wumpus = (4,3)
         self.buracos = {(2,3), (4,4)}
-
-        #Estado da partida
-        self.tem_ouro = False
-        self.tem_flecha = True
-        self.wumpus_vivo = True
         self.jogo_finalizado = False
         self.vitoria = False
-        self.morreu = False
 
-        #Auxiliar
-        self.visitados = {self.pos_heroi}
-        self.caminho = [self.pos_heroi]
+        #Estado da partida
+        self.wumpus_vivo = True
 
     # Define se está dentro do mapa
     def dentro_do_mapa(self, pos):
@@ -37,7 +30,7 @@ class MundoWumpus:
         ]
         return [p for p in cells_vizinhas if self.dentro_do_mapa(p)]
 
-    def perceber(self, bump=False, scream=False):
+    def perceber(self, heroi, bump=False, scream=False):
         if self.jogo_finalizado:
             if self.morreu:
                 return "O jogo terminou. O heroi morreu."
@@ -51,7 +44,7 @@ class MundoWumpus:
         if any(p in self.vizinhos(self.pos_heroi) for p in self.buracos):
             percepcoes.append("Brisa")
 
-        if self.pos_heroi == self.pos_ouro and not self.tem_ouro:
+        if self.pos_heroi == self.pos_ouro and not heroi.tem_ouro:
             percepcoes.append("Brilho")
 
         if bump:
