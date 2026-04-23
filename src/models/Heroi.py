@@ -1,11 +1,13 @@
 class Heroi:
     def __init__(self):
         self.posicao = (1, 1)
+        self.direcao = "direita"
         self.tem_ouro = False
         self.tem_flecha = True
         self.vivo = True
         self.visitados = {(1, 1)}
         self.caminho = [(1, 1)]
+        self.memoria = {}
 
     def andar(self, mundo, direcao):
         if not self.vivo:
@@ -121,3 +123,7 @@ class Heroi:
         
         mundo.vitoria = False
         return "Você saiu da caverna sem o ouro."
+    
+    def registrar_percepcao(self, percepcao: str):
+        print("DEBUG: registrar_percepcao foi chamado")
+        self.memoria[self.posicao] = percepcao
