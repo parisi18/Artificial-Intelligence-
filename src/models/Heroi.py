@@ -101,3 +101,23 @@ class Heroi:
         
         self.tem_ouro = True
         return "Você pegou o ouro com sucesso"
+    
+    def escalar_saida(self, mundo):
+        if not self.vivo:
+            return "O herói está morto. Não pode sair da caverna."
+        
+        if mundo.jogo_finalizado:
+            return "O jogo já terminou. Nenhuma ação pode ser executada."
+        
+        if self.posicao != (1,1):
+            percepcao = mundo.perceber(self)
+            return f"A saída só pode ser usada na posição inicial (1,1). Percepções: {percepcao}."
+        
+        mundo.jogo_finalizado = True
+
+        if self.tem_ouro:
+            mundo.vitoria = True
+            return "Você saiu da caverna com o ouro. Vitória!"
+        
+        mundo.vitoria = False
+        return "Você saiu da caverna sem o ouro."

@@ -1,0 +1,1 @@
+from .actions import andar, atirar, pegar_ouro, escalar_saida

@@ -1,18 +1,12 @@
-from .Heroi import Heroi
-from .MundoWumpus import MundoWumpus
+from src.tools.actions import andar, atirar, pegar_ouro, escalar_saida
+
 
 def main():
-    mundo = MundoWumpus()
-    heroi = Heroi() 
 
-
-    heroi.posicao = (3, 2)
-    
-    #Forçando matar o wumpus
-    print(heroi.pegar_ouro(mundo))
-    print("Herói tem ouro?", heroi.tem_ouro)
-
-    print(heroi.pegar_ouro(mundo))
+    print(andar("direita"))
+    print(atirar("baixo"))
+    print(pegar_ouro())
+    print(escalar_saida())
 
 if __name__ == "__main__":
     main()
