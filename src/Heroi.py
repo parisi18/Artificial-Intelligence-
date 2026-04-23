@@ -85,4 +85,19 @@ class Heroi:
         percepcao = mundo.perceber(self)
         return f"Você atirou para {direcao}, mas errou. Percepções: {percepcao}."
     
-    
+    def pegar_ouro(self, mundo):
+        if not self.vivo:
+            return "O herói está morto. Não pode pegar o ouro."
+        
+        if mundo.jogo_finalizado:
+            return "O jogo já terminou. Nenhuma ação pode ser executada."
+        
+        if self.tem_ouro:
+            return "O herói já está com o ouro."
+        
+        if self.posicao != mundo.pos_ouro:
+            percepcao = mundo.perceber(self)
+            return f"Não há ouro nesta posição. Percepções: {percepcao}"
+        
+        self.tem_ouro = True
+        return "Você pegou o ouro com sucesso"
