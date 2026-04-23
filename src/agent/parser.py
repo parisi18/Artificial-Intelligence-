@@ -1,26 +1,24 @@
 import json
 
 
-def parse_action(response_text: str) -> dict:
-    """
-    Converte a resposta do modelo em um dict no formato:
-    {"tool": "...", "args": {...}}
-    """
+def parse_action_from_react(response_text: str) -> dict:
+    if "Action:" not in response_text:
+        raise ValueError("Resposta sem bloco 'Action:'.")
+
+    action_part = response_text.split("Action:", 1)[1].strip()
+
     try:
-        action = json.loads(response_text)
+        action = json.loads(action_part)
     except json.JSONDecodeError:
-        raise ValueError(f"Resposta não está em JSON válido: {response_text}")
+        raise ValueError(f"Bloco Action não contém JSON válido: {action_part}")
 
-    if not isinstance(action, dict):
-        raise ValueError("A resposta do agente deve ser um objeto JSON.")
+    if "action" not in action:
+        raise ValueError("JSON sem campo 'action'.")
 
-    if "tool" not in action:
-        raise ValueError("JSON sem campo obrigatório 'tool'.")
+    if "action_input" not in action:
+        raise ValueError("JSON sem campo 'action_input'.")
 
-    if "args" not in action:
-        raise ValueError("JSON sem campo obrigatório 'args'.")
-
-    if not isinstance(action["args"], dict):
-        raise ValueError("O campo 'args' deve ser um objeto JSON.")
+    if not isinstance(action["action_input"], dict):
+        raise ValueError("O campo 'action_input' deve ser um objeto JSON.")
 
     return action
