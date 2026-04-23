@@ -18,12 +18,22 @@ def escalar_saida():
 
 def call_tool(nome, **kwargs):
     if nome == "andar":
-        return andar(kwargs["direcao"])
+        direcao = kwargs.get("direcao")
+        if direcao is None:
+            return "Erro: a ferramenta 'andar' exige o argumento 'direcao'."
+        return andar(direcao)
+
     elif nome == "atirar":
-        return atirar(kwargs["direcao"])
+        direcao = kwargs.get("direcao")
+        if direcao is None:
+            return "Erro: a ferramenta 'atirar' exige o argumento 'direcao'."
+        return atirar(direcao)
+
     elif nome == "pegar_ouro":
         return pegar_ouro()
+
     elif nome == "escalar_saida":
         return escalar_saida()
+
     else:
         return f"Ferramenta desconhecida: {nome}"
