@@ -40,3 +40,49 @@ class Heroi:
 
         percepcao = mundo.perceber(self)
         return f"Você andou para {direcao} e agora está em {self.posicao}. Percepções: {percepcao}"
+    
+    def atirar(self, mundo, direcao):
+        if not self.vivo:
+            return "O herói está morto. Não pode atirar."
+        
+        if mundo.jogo_finalizado:
+            return "O jogo já terminou. Nenhuma ação pode ser executada."
+        
+        if not self.tem_flecha:
+            return "O herói já usou a flecha."
+        
+        movimentos_validos = {
+            "cima", 
+            "baixo", 
+            "esquerda", 
+            "direita"
+        }
+
+        if direcao not in movimentos_validos:
+            return f"Direção inválida: {direcao}. Use cima, baixo, esquerda, direita."
+        
+        self.tem_flecha = False
+
+        linha_h, col_h = self.posicao
+        linha_w, col_w = mundo.pos_wumpus
+
+        acertou = False
+
+        if direcao == "cima" and col_h == col_w and linha_w < linha_h:
+            acertou = True
+        elif direcao == "baixo" and col_h == col_w and linha_w > linha_h:
+            acertou = True
+        elif direcao == "esquerda" and linha_h == linha_w and col_w < col_h:
+            acertou = True
+        elif direcao == "direita" and linha_h == linha_w and col_w > col_h:
+            acertou = True
+
+        if acertou and mundo.wumpus_vivo:
+            mundo.wumpus_vivo = False
+            percepcao = mundo.perceber(self, scream=True)
+            return f"Você atirou para {direcao} e matou o Wumpus. Percepções: {percepcao}"
+        
+        percepcao = mundo.perceber(self)
+        return f"Você atirou para {direcao}, mas errou. Percepções: {percepcao}."
+    
+    

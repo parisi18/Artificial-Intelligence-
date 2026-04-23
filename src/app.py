@@ -4,28 +4,13 @@ from .MundoWumpus import MundoWumpus
 def main():
     mundo = MundoWumpus()
     heroi = Heroi()
-    print("Posição do herói:", heroi.posicao)
-    print("Tem ouro?", heroi.tem_ouro)
-    print("Percepção inicial:", mundo.perceber(heroi))
+    
+    heroi.posicao = (2, 3)
 
-    print(heroi.andar(mundo, "direita"))
-    print("Posição atual:", heroi.posicao)
-    print("Visitados:", heroi.visitados)
-    print("Caminho:", heroi.caminho)
-
-    print(heroi.andar(mundo, "esquerda"))
-    print("Posição atual:", heroi.posicao)
-    print("Visitados:", heroi.visitados)
-
-    #testar colisão
-    print(heroi.andar(mundo, "esquerda"))
-    print("Posição atual:", heroi.posicao)
-    print("Visitados:", heroi.visitados)
-
-    print(heroi.andar(mundo, "baixo"))
-    print("Posição atual:", heroi.posicao)
-    print("Visitados:", heroi.visitados)
-    print("Percepção manual:", mundo.perceber(heroi))
+    #Forçando matar o wumpus
+    print(heroi.atirar(mundo, "baixo"))
+    print("Wumpus vivo?", mundo.wumpus_vivo)
+    print("Herói tem flecha?", heroi.tem_flecha)
 
 if __name__ == "__main__":
     main()
