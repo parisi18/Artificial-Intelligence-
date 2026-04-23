@@ -29,7 +29,6 @@ class MundoWumpus:
         return [p for p in cells_vizinhas if self.dentro_do_mapa(p)]
 
     def perceber(self, heroi, bump=False, scream=False):
-        print("DEBUG: entrou em perceber")
         if self.jogo_finalizado:
             if not heroi.vivo:
                 resultado = "O jogo terminou. O herói morreu."

@@ -37,3 +37,6 @@ def call_tool(nome, **kwargs):
 
     else:
         return f"Ferramenta desconhecida: {nome}"
+    
+def get_estado_atual():
+    return heroi, mundo

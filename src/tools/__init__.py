@@ -1,1 +1,1 @@
-from .actions import andar, atirar, pegar_ouro, escalar_saida, call_tool
+from .actions import andar, atirar, pegar_ouro, escalar_saida, call_tool, get_estado_atual

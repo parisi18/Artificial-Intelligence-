@@ -125,5 +125,15 @@ class Heroi:
         return "Você saiu da caverna sem o ouro."
     
     def registrar_percepcao(self, percepcao: str):
-        print("DEBUG: registrar_percepcao foi chamado")
         self.memoria[self.posicao] = percepcao
+
+    def formatar_memoria(self) -> str:
+        if not self.memoria:
+            return "Nenhuma célula conhecida ainda."
+
+        linhas = ["Mapa conhecido até agora:"]
+        for posicao in sorted(self.memoria.keys()):
+            percepcao = self.memoria[posicao]
+            linhas.append(f"{posicao}: {percepcao}")
+
+        return "\n".join(linhas)
