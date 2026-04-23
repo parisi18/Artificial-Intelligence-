@@ -15,18 +15,19 @@ As direções válidas são:
 - esquerda
 - direita
 
-Você deve sempre responder no formato exato abaixo:
+Responda sempre em um destes formatos:
 
 Thought:
-<seu raciocínio curto>
+<raciocínio curto>
 
 Action:
 {"action": "andar", "action_input": {"direcao": "direita"}}
 
-Quando concluir a tarefa, responda no formato:
+ou
 
 Final Answer:
 <resposta final>
 
-Nunca escreva Observation. Observation será fornecida pelo ambiente.
+Nunca escreva Observation.
+Após cada Action, você receberá uma Observation do ambiente.
 """
